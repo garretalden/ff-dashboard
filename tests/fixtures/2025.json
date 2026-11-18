@@ -1,0 +1,22 @@
+{
+  "year": 2025,
+  "current_week": 2,
+  "reg_season_count": 1,
+  "playoff_team_count": 1,
+  "teams": [
+    {"owner": "Alex Example", "wins": 1, "losses": 0, "final_standing": 1, "standing": 1, "scores": [100, 110]},
+    {"owner": "Blair Example", "wins": 0, "losses": 1, "final_standing": 2, "standing": 2, "scores": [90, 95]}
+  ],
+  "drafted_player_ids": [1],
+  "player_names": {"1": "Drafted Player", "2": "Waiver Player", "3": "Bench Player"},
+  "weeks": [
+    {"week": 1, "starters": [
+      {"player_id": 1, "position": "QB", "lineup_slot": "QB", "points": 10},
+      {"player_id": 2, "position": "QB", "lineup_slot": "QB", "points": 20},
+      {"player_id": 3, "position": "QB", "lineup_slot": "BE", "points": 50}
+    ], "matchups": []},
+    {"week": 2, "starters": [
+      {"player_id": 2, "position": "QB", "lineup_slot": "QB", "points": 0}
+    ], "matchups": [{"home_owner": "Alex Example", "away_owner": "Blair Example", "home_final_standing": 1, "away_final_standing": 2, "home_score": 110, "away_score": 95}]}
+  ]
+}

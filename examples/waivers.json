@@ -1,0 +1,34 @@
+{
+  "all_seasons": [
+    {
+      "player_id": 2,
+      "player_name": "Waiver Player",
+      "position": "QB",
+      "total_points": 20,
+      "weeks": 2,
+      "year": 2025,
+      "vor": -10
+    }
+  ],
+  "by_season": {
+    "2025": [
+      {
+        "player_id": 2,
+        "player_name": "Waiver Player",
+        "position": "QB",
+        "total_points": 20,
+        "weeks": 2,
+        "year": 2025,
+        "vor": -10
+      }
+    ]
+  },
+  "replacement_standards": {
+    "2025": {
+      "QB": 15,
+      "RB": null,
+      "WR": null,
+      "TE": null
+    }
+  }
+}

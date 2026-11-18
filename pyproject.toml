@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ff-dashboard"
+version = "0.1.0"
+description = "Reproducible fantasy football league analytics"
+requires-python = ">=3.10"
+dependencies = ["espn-api==1.0.1", "python-dotenv==1.2.4"]
+
+[project.scripts]
+ff-dashboard = "ff_dashboard.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
