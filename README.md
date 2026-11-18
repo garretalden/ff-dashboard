@@ -28,6 +28,20 @@ ff-dashboard generate --start-year 2021 --end-year 2025 --data-dir data --output
 
 Both endpoints of the year range are inclusive. Each requested snapshot must exist and identify the matching year. Generation overwrites its four output files. For a fully offline example, use `--start-year 2025 --end-year 2025 --data-dir tests/fixtures`; sample output is in `examples/` and contains fictional data.
 
+## View rankings in the terminal
+
+These commands calculate and display rankings directly from saved snapshots, without network access or writing output files:
+
+```sh
+ff-dashboard standings
+ff-dashboard playoffs
+ff-dashboard waivers all
+ff-dashboard waivers 2025
+ff-dashboard waivers 2021 2025
+```
+
+Standings, playoffs, and `waivers all` use every four-digit season JSON file in `data/`, even if years are missing. A waiver year range is inclusive and requires a snapshot for every year. Add `--data-dir tests/fixtures` to use the fictional example, or specify another snapshot directory. Percentages are shown as fractions; `-` means a value is unavailable. Waiver rows represent player-seasons rather than combined player totals.
+
 ## Website data contract
 
 All files are UTF-8 JSON. `metadata.json` has `schema_version` (currently 1), an ordered `seasons` array, and `source_current_weeks` keyed by season. No generation timestamp is included, so identical snapshots produce identical output.

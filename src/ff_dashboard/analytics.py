@@ -37,7 +37,7 @@ def analyze(seasons):
                 if player["points"] != 0 and player["position"] in POSITIONS:
                     week_scores[player["position"]].append(player["points"])
             for position, scores in week_scores.items():
-                weekly_replacements[position].append(mean(sorted(scores)[-3:]))
+                weekly_replacements[position].append(mean(sorted(scores)[:3]))
         standards = {p: mean(weekly_replacements[p]) if weekly_replacements[p] else None for p in POSITIONS}
         standards_by_year[str(year)] = standards
         drafted = set(season["drafted_player_ids"])

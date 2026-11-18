@@ -35,6 +35,17 @@ class PipelineTests(unittest.TestCase):
         self.season["current_week"] = 1
         self.assertEqual(analyze([self.season])["playoff_appearances"][0]["playoff_apps"], 0)
 
+    def test_replacement_uses_bottom_three_starter_scores(self):
+        self.season["weeks"] = [{"week": 1, "starters": [
+            {"player_id": 1, "position": "QB", "lineup_slot": "QB", "points": 10},
+            {"player_id": 2, "position": "QB", "lineup_slot": "QB", "points": 20},
+            {"player_id": 4, "position": "QB", "lineup_slot": "QB", "points": 30},
+            {"player_id": 5, "position": "QB", "lineup_slot": "QB", "points": 40},
+        ]}]
+        result = analyze([self.season])["waivers"]
+        self.assertEqual(result["replacement_standards"]["2025"]["QB"], 20)
+        self.assertEqual(result["all_seasons"][0]["vor"], 0)
+
     def test_draft_score_selection(self):
         self.assertEqual(regular_season_scores(self.season)["Alex Example"], [100])
         self.assertEqual(playoff_scores(self.season)["Blair Example"], [95])
@@ -49,6 +60,27 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(json.loads(first["metadata.json"])["seasons"], [2025])
             command[command.index("2025")] = "2024"
             self.assertNotEqual(subprocess.run(command, capture_output=True).returncode, 0)
+
+    def test_view_commands_and_year_selection(self):
+        base = [sys.executable, "-m", "ff_dashboard.cli"]
+        for command, expected in ((["standings"], "Alex Example"),
+                                  (["playoffs"], "Appearances"),
+                                  (["waivers", "all"], "Waiver Player"),
+                                  (["waivers", "2025"], "Waiver Player"),
+                                  (["waivers", "2025", "2025"], "Waiver Player")):
+            result = subprocess.run(base + command + ["--data-dir", str(FIXTURES)], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn(expected, result.stdout)
+        for command in (["waivers", "2024", "2025"], ["waivers", "2025", "2024"], ["waivers", "all", "2025"]):
+            result = subprocess.run(base + command + ["--data-dir", str(FIXTURES)], capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+
+    def test_view_all_without_snapshots(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            result = subprocess.run([sys.executable, "-m", "ff_dashboard.cli", "standings", "--data-dir", tmp],
+                                    capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("No season snapshots", result.stderr)
 
 
 if __name__ == "__main__":
