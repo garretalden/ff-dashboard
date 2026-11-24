@@ -29,7 +29,7 @@ def collect(year):
             for player in box.home_lineup + box.away_lineup:
                 starters.append({"player_id": player.playerId, "position": player.position,
                                  "lineup_slot": player.lineupSlot, "points": player.points})
-            if box.home_team != 0 and box.away_team != 0:
+            if box.home_team and box.away_team:  # byes leave one side as 0 or None
                 matchups.append({"home_owner": _owner(box.home_team), "away_owner": _owner(box.away_team),
                                  "home_final_standing": box.home_team.final_standing,
                                  "away_final_standing": box.away_team.final_standing,

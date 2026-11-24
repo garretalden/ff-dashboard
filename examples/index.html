@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hagerstown FF League</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Hagerstown FF League</h1>
+      <p id="seasons" class="muted">Loading…</p>
+    </header>
+
+    <p id="error" class="error" role="alert" hidden></p>
+
+    <nav class="tabs" role="tablist" aria-label="Tables">
+      <button role="tab" id="tab-waivers" aria-controls="waivers" data-tab="waivers">Waiver adds</button>
+      <button role="tab" id="tab-standings" aria-controls="standings" data-tab="standings">Standings</button>
+      <button role="tab" id="tab-playoffs" aria-controls="playoffs" data-tab="playoffs">Playoffs &amp; championships</button>
+    </nav>
+
+    <section id="waivers" role="tabpanel" aria-labelledby="tab-waivers" hidden>
+      <div class="controls">
+        <label>Season <select id="waiver-season"></select></label>
+        <label>Position
+          <select id="waiver-position">
+            <option value="">All</option>
+            <option>QB</option><option>RB</option><option>WR</option><option>TE</option>
+          </select>
+        </label>
+      </div>
+      <p class="muted">Undrafted players ranked by value over replacement (VOR) while in a starting lineup.
+        Each row is one player-season.</p>
+      <div class="table-wrap"><table id="waiver-table"></table></div>
+      <button id="waiver-more" class="link-button" hidden></button>
+    </section>
+
+    <section id="standings" role="tabpanel" aria-labelledby="tab-standings" hidden>
+      <div class="controls">
+        <div class="segmented" data-target="standings" role="group" aria-label="Managers">
+          <button data-scope="all" aria-pressed="true">All-time</button>
+          <button data-scope="current" aria-pressed="false">Current managers</button>
+        </div>
+      </div>
+      <p class="muted">Regular-season record across all seasons. Ties are excluded from win percentage.</p>
+      <div class="table-wrap"><table id="standings-table"></table></div>
+    </section>
+
+    <section id="playoffs" role="tabpanel" aria-labelledby="tab-playoffs" hidden>
+      <div class="controls">
+        <div class="segmented" data-target="playoffs" role="group" aria-label="Managers">
+          <button data-scope="all" aria-pressed="true">All-time</button>
+          <button data-scope="current" aria-pressed="false">Current managers</button>
+        </div>
+      </div>
+      <p class="muted">Playoff percentage counts only seasons whose playoff field is decided.
+        Championships count completed seasons only.</p>
+      <div class="table-wrap"><table id="playoffs-table"></table></div>
+    </section>
+  </main>
+</body>
+</html>

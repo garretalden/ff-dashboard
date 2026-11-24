@@ -1,0 +1,116 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --fg: #1d1f23;
+  --muted: #5f6672;
+  --border: #d9dce1;
+  --stripe: #f4f5f7;
+  --accent: #2f5fd0;
+  --accent-fg: #ffffff;
+  --error-bg: #fdecec;
+  --error-fg: #8a1c1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15171a;
+    --fg: #e6e8eb;
+    --muted: #9aa1ad;
+    --border: #30343a;
+    --stripe: #1d2024;
+    --accent: #7aa2ff;
+    --accent-fg: #0b0d10;
+    --error-bg: #3a1717;
+    --error-fg: #ffb4b4;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+main { max-width: 960px; margin: 0 auto; padding: 24px 16px 48px; }
+
+h1 { margin: 0 0 4px; font-size: 1.6rem; }
+
+.muted { color: var(--muted); }
+
+.error {
+  padding: 12px 14px;
+  border-radius: 6px;
+  background: var(--error-bg);
+  color: var(--error-fg);
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin: 20px 0 16px;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.tabs button {
+  padding: 10px 14px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.tabs button[aria-selected="true"] {
+  border-bottom-color: var(--accent);
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.controls { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+
+select { margin-left: 6px; padding: 4px 6px; font: inherit; }
+
+.segmented { display: inline-flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+
+.segmented button {
+  padding: 6px 12px;
+  border: 0;
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+}
+
+.segmented button + button { border-left: 1px solid var(--border); }
+
+.segmented button[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); }
+
+.table-wrap { overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+
+th, td { padding: 7px 10px; border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap; }
+
+th { font-weight: 600; }
+
+tbody tr:nth-child(even) { background: var(--stripe); }
+
+.num { text-align: right; }
+
+.link-button {
+  margin-top: 12px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
+}
+
+.link-button:hover { text-decoration: underline; }

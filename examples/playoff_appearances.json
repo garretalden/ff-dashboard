@@ -3,12 +3,16 @@
     "name": "Alex Example",
     "playoff_apps": 1,
     "seasons": 1,
-    "playoff_pct": 1.0
+    "playoff_pct": 1.0,
+    "championships": 1,
+    "current": true
   },
   {
     "name": "Blair Example",
     "playoff_apps": 0,
     "seasons": 1,
-    "playoff_pct": 0.0
+    "playoff_pct": 0.0,
+    "championships": 0,
+    "current": true
   }
 ]

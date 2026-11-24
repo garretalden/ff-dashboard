@@ -3,12 +3,14 @@
     "name": "Alex Example",
     "wins": 1,
     "losses": 0,
-    "win_pct": 1.0
+    "win_pct": 1.0,
+    "current": true
   },
   {
     "name": "Blair Example",
     "wins": 0,
     "losses": 1,
-    "win_pct": 0.0
+    "win_pct": 0.0,
+    "current": true
   }
 ]

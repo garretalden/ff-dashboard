@@ -14,3 +14,6 @@ ff-dashboard = "ff_dashboard.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+ff_dashboard = ["web/*"]
